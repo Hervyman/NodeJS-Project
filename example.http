@@ -1,0 +1,59 @@
+@local = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDIxYjRjZDFmZmZiYTkyYWMyM2E1ZGUiLCJiaXoiOnRydWUsImlhdCI6MTY3OTkzMjU3Mn0.cAbhhTZk5vxWcTrCipHsGMIN5XIiCs74NK06QRdoQ3c
+
+
+### create user
+
+POST {{local}}/user/
+Content-Type: application/json
+
+{
+    "name":"ari",
+    "email":"ari123@gmail.com",
+    "password":"123456",
+    "biz":true
+}
+
+### login user and recieve token
+POST {{local}}/auth
+Content-Type: application/json
+
+{
+    "email":"ari123@gmail.com",
+    "password":"123456"
+
+}
+
+### find user info
+GET {{local}}/user/me 
+x-auth-token: {{token}}
+
+
+### create card
+POST {{local}}/cards/
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+    "bizName": "customerName",
+    "bizDescription": "lorem ipsum",
+    "bizAddress": "100 tel aviv",
+    "bizPhone": "0501234567"
+}
+
+### find card
+
+GET {{local}}/cards/642465f447aa593acdeb03c4
+x-auth-token: {{token}}
+
+### updat card
+PUT {{local}}/cards/642465f447aa593acdeb03c4
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+    "bizName": "Moshe",
+    "bizDescription":"lorem ipsum",
+    "bizAddress":"tel aviv hashalom 100",
+    "bizPhone":"0501234567"
+}
